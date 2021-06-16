@@ -13,9 +13,20 @@ import java.util.Scanner;
  * @author Ttnngrh
  */
 public class MainAplikasiKasir {
+    public DaftarMenu daftarmenu;
+    //Tambahkan
+    public static double PAJAK_PPN = 0.10;
+    public static double BIAYA_SERVICE = 0.05;
+    //End of Tambahkan
+    
     public static void main(String[] args) {
-         Scanner input = new Scanner(System.in);
-
+        //init
+        Scanner input = new Scanner(System.in);
+        //Tambahkan
+        String no_transaksi, nama_pemesan, tanggal, no_meja = "";
+        String transaksi_lagi = "", pesan_lagi = "", keterangan = "", makan_ditempat;
+        int jumlah_pesanan, no_menu;
+        //End of Tambahkan
         MainAplikasiKasir app = new MainAplikasiKasir();
         app.generateDaftarMenu();
     }
