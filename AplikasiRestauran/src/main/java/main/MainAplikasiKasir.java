@@ -104,10 +104,50 @@ public class MainAplikasiKasir {
         pesanan.setKeterangan(keterangan);
         }
 
-            //konfirmasi, mau tambah pesanan atau tidak
-            System.out.print("Tambah Pesanan Lagi? [Y/N] : ");
-            pesan_lagi = input.next();
-          } while (pesan_lagi.equalsIgnoreCase("Y"));
+        //konfirmasi, mau tambah pesanan atau tidak
+        System.out.print("Tambah Pesanan Lagi? [Y/N] : ");
+        pesan_lagi = input.next();
+        } while (pesan_lagi.equalsIgnoreCase("Y"));
+        
+        //Cetak Struk
+        trans.cetakStruk();
+
+        //Hitung total harga
+        double totalPesanan = trans.hitungTotalPesanan();
+        System.out.println("========================");
+        System.out.println("Total : \t\t" + totalPesanan);
+
+        //Hitung Pajak
+        //Jika makan ditempat, biaya pajak = 10% ppn + 5% service
+        trans.setPajak(PAJAK_PPN);
+        double ppn = trans.hitungPajak();
+        System.out.println("Pajak 10% : \t\t" + ppn);
+
+        double biaya_service = 0;
+        if (makan_ditempat.equalsIgnoreCase("Y")) {
+            trans.setBiayaService(BIAYA_SERVICE);
+            biaya_service = trans.hitungBiayaService();
+            System.out.println("Biaya Service 5% : \t" + biaya_service);
+        }
+
+        //Tampilkan total bayar
+        System.out.println("Total : \t\t" + trans.hitungTotalBayar(ppn, biaya_service));
+
+        //Cek uang bayar, apakah > total bayar atau tidak
+        double kembalian = 0;
+        do {
+            double uangBayar = app.cekInputNumber("Uang Bayar : \t\t");
+
+            kembalian = trans.hitungKembalian(uangBayar);
+            if (kembalian < 0) {
+                System.out.println("[Err] Uang anda kurang");
+            } else {
+                System.out.println("Kembalian : \t\t" + kembalian);
+                break;
+            }
+        } while (kembalian < 0);
+
+        System.out.println("============ TERIMA KASIH ============");
     }
     public void generateDaftarMenu() {
         DaftarMenu daftarMenu = new DaftarMenu();
