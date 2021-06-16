@@ -92,4 +92,8 @@ public class Transaksi {
             System.out.println(pesanan);
         }
     }
+
+    public double hitungKembalian(double uangBayar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
